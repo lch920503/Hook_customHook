@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export const useFetch = (BASE_URL, initResource) => {
-  const [data, setData] = useState([]);
+export const useFetch = (BASE_URL, initType) => {
+  const [data, setData] = useState();
 
-  const handleData = (resource) => {
-    fetch(`${BASE_URL}/${resource}`)
+  const api = (type) => {
+    fetch(`${BASE_URL}/${type}`)
       .then((res) => res.json())
       .then((res) => setData(res));
   };
 
   useEffect(() => {
-    handleData(initResource);
+    api(initType);
   }, []);
 
-  return [data, handleData];
+  return { data, api };
 };

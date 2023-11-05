@@ -1,17 +1,16 @@
-import React from "react";
 import { useFetch } from "./customHooks/useFetch";
 
-const CustomHook2 = () => {
-  const BASE_URL = "https://jsonplaceholder.typicode.com/";
+const BASE_URL = "https://jsonplaceholder.typicode.com";
 
-  const [data, handleData] = useFetch(BASE_URL, "posts");
+const CustomHook2 = () => {
+  const { data, api } = useFetch(BASE_URL, "albums");
 
   return (
     <>
-      <h1>CustomHook - Data 다루기</h1>
-      <button onClick={() => handleData("posts")}>posts 보기</button>
-      <button onClick={() => handleData("todos")}>todos 보기</button>
-      <button onClick={() => handleData("albums")}>albums 보기</button>
+      <h1>CustomHook - api fetch 다루기</h1>
+      <button onClick={() => api("posts")}>posts 보여주기</button>
+      <button onClick={() => api("comments")}>comments 보여주기</button>
+      <button onClick={() => api("albums")}>albums 보여주기</button>
       <div>{JSON.stringify(data)}</div>
     </>
   );

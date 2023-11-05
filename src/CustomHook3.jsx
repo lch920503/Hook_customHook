@@ -1,18 +1,19 @@
 import React from "react";
-import useFetchImage from "./customHooks/useFetchImage";
+import useAddItem from "./customHooks/useAddItem";
 
 const CustomHook3 = () => {
-  const BASE_URL = "https://jsonplaceholder.typicode.com/";
-  const { images } = useFetchImage(BASE_URL);
+  const [value, list, onChange, handleAddItem] = useAddItem();
 
   return (
     <>
-      <h1>CustomHook - data 다루기 (응용 버전)</h1>
-      <div>
-        {images.splice(0, 10).map((item) => (
-          <img key={item.id} src={item.url} alt="" />
+      <h1>CustomHook - 아이템 추가하기</h1>
+      <input type="text" value={value} onChange={onChange} />
+      <ul>
+        {list.map((item, index) => (
+          <li key={index}>{item}</li>
         ))}
-      </div>
+      </ul>
+      <button onClick={handleAddItem}>아이템 추가</button>
     </>
   );
 };
