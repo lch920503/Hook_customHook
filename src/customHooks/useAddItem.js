@@ -8,7 +8,8 @@ const useAddItem = () => {
     setValue(e.target.value);
   };
   const handleAddItem = () => {
-    setList([value, ...list]);
+    setList([...list, value]);
+    setValue("");
   };
   return [value, list, onChange, handleAddItem];
 };
